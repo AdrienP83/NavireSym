@@ -12,17 +12,20 @@
  * @author adrien.poignard
  */
 use Doctrine\Persistence\ManagerRegistry;
-use \App\Repository\MessageRepository;
+use App\Repository\MessageRepository;
 use Twig\Environment;
+use Swift_Mailer;
+use App\Entity\Message;
+
 namespace App\Service;
 class GestionContact {
 
     private \Swift_Mailer $mail;
-    private Environment $environnementTwig;
-    private ManagerRegistry $doctrine;
-    private MessageRepository $repo;
+    private \Twig\Environment $environnementTwig;
+    private \Doctrine\Persistence\ManagerRegistry $doctrine;
+    private \App\Repository\MessageRepository $repo;
     
-    function __construct(\Swift_Mailer $mail, Environment $environnementTwig, ManagerRegistry $doctrine, MessageRepository $repo) {
+    function __construct(\Swift_Mailer $mail, \Twig\Environment $environnementTwig, \Doctrine\Persistence\ManagerRegistry $doctrine, \App\Repository\MessageRepository $repo) {
         $this->mail = $mail;
         $this->environnementTwig = $environnementTwig;
         $this->doctrine = $doctrine;

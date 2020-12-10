@@ -3,26 +3,29 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-<div class="container">
-    {{form_start(form)}}
-    <div class=""col-8 id="some-custum-id">
-        {{form_label(form.nom,'Nom')}}
-        {{form_widget(form.nom,{'attr':{'placeholder':'Nom du contact'}})}}
-    </div>
-    <div class=""col-8 id="some-custum-id">
-        {{form_label(form.nom,'Prénom')}}
-        {{form_widget(form.nom,{'attr':{'placeholder':'Prénom du contact'}})}}
-    </div>
-    <div class=""col-8 id="some-custum-id">
-        {{form_label(form.nom,'Mail')}}
-        {{form_widget(form.nom,{'attr':{'placeholder':'Adresse Mail'}})}}
-    </div>
-    <div class=""col-8 id="some-custum-id">
-        {{form_label(form.nom,'Message')}}
-        {{form_widget(form.nom,{'attr':{'placeholder':'Que voulez-vous dire ?'}})}}
-    </div>
-    
-    <button type='submit' class='btn btn-success'> Envoyer </button>
-    {{form_end(form)}}
-</div>
+    {%block form %}
+        <div class="container">
+            {{form_start(form)}}
+            <div class=""col-8 id="some-custum-id">
+                {{form_label(form.nom,'Nom')}}
+                {{form_widget(form.nom,{'attr':{'placeholder':'Nom du contact'}})}}
+            </div>
+            <div class=""col-8 id="some-custum-id">
+                {{form_label(form.nom,'Prénom')}}
+                {{form_widget(form.nom,{'attr':{'placeholder':'Prénom du contact'}})}}
+            </div>
+            <div class=""col-8 id="some-custum-id">
+                {{form_label(form.nom,'Mail')}}
+                {{form_widget(form.nom,{'attr':{'placeholder':'Adresse Mail'}})}}
+            </div>
+            <div class=""col-8 id="some-custum-id">
+                {{form_label(form.nom,'Message')}}
+                {{form_widget(form.nom,{'attr':{'placeholder':'Que voulez-vous dire ?'}})}}
+            </div>
+
+            <button type='submit' class='btn btn-success'> Envoyer </button>
+            {{form_end(form)}}
+
+        </div>
+    {%endblock%}
 {% endblock %}

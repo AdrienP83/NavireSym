@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use \Symfony\Component\HttpFoundation\Request;
 use App\Service\GestionContact;
+use App\Entity\Message;
+use App\Form\MessageType;
 
 /**
  * @Route("/message", name="message_")
@@ -14,17 +16,17 @@ use App\Service\GestionContact;
 class MessageController extends AbstractController {
 
     /**
-     * @Route("/contact", name="contact_")
+     * @Route("/contact", name="contact")
      */
     public function contact(Request $request, GestionContact $gestionContact): Response {
-        $messsage = new Message();
+        $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $message = $form->getData();
             $gestionContact->envoiMailContact($message);
-
+            $this->addFlash('notification', "Votre message a bien été envoyé");
             return $this->redirectToRoute("home");
         }
         return $this->render('message/contact.html.twig', [
