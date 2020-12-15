@@ -32,7 +32,9 @@
         </div>
       </li>
     </ul>
-    {{render(controller('App\\Contoller\\SearchController::searchBar'))}}
+    {{render(controller(
+            'App\\Controller\\SearchController::searchBar'
+))}}
   </div>
 </nav>
 {%endblock%}
