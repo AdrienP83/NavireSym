@@ -10,6 +10,9 @@ use Symfony\Component\Validator\Constraints\Lenght;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
+ * @ORM\Table( name="navire",
+ * uniqueConstraints={@ORM\UniqueConstraint(name="mmsi_unique",columns={"mmsi"})}
+ * )
  */
 class Navire
 {
@@ -21,9 +24,9 @@ class Navire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="string", length=7,unique=true)
      * @Assert\Regex(
-     * pattern="/[1-9]{7}/",
+     * pattern="/[1-9][0-9]{6}/",
      * message="Le numéro IMO doit comporter 7 chiffres"
      * )
      */
@@ -40,7 +43,7 @@ class Navire
     /**
      * @ORM\Column(type="string", length=9)
      * @Assert\Regex(
-     * pattern="/[1-9]{9}/",
+     * pattern="/[1-9][0-9]{8}/",
      * message="Le numéro IMO doit comporter 9 chiffres")
      */
     private $mmsi;
@@ -55,6 +58,18 @@ class Navire
      * 
      */
     private $eta;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\JoinColumn(name="idpays",nullable=false)
+     */
+    private $lePavillon;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=aisshiptype::class)
+     * @ORM\JoinColumn(name="idaisshiptype",nullable=false)
+     */
+    private $idAisshiptype;
 
     public function getId(): ?int
     {
@@ -117,6 +132,30 @@ class Navire
     public function setEta(\DateTimeInterface $eta): self
     {
         $this->eta = $eta;
+
+        return $this;
+    }
+
+    public function getLePavillon(): ?Pays
+    {
+        return $this->lePavillon;
+    }
+
+    public function setLePavillon(?Pays $lePavillon): self
+    {
+        $this->lePavillon = $lePavillon;
+
+        return $this;
+    }
+
+    public function getIdAisshiptype(): ?aisshiptype
+    {
+        return $this->idAisshiptype;
+    }
+
+    public function setIdAisshiptype(?aisshiptype $idAisshiptype): self
+    {
+        $this->idAisshiptype = $idAisshiptype;
 
         return $this;
     }

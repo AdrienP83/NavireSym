@@ -14,7 +14,6 @@
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\MessageRepository;
 use Twig\Environment;
-use Swift_Mailer;
 use App\Entity\Message;
 
 namespace App\Service;
