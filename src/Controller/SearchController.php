@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Flex\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\NavireRepository;
+
 
 class SearchController extends AbstractController {
 
@@ -38,7 +39,7 @@ class SearchController extends AbstractController {
  */
     public function handleSearch(Request $request, NavireRepository $repo): Reponse {
         $valeur = $request->request->get('form')['cherche'];
-        if (isset($request->request->get('form')['znvoiimo'])) {
+        if (isset($request->request->get('form')['envoiimo'])) {
             $critere = "imo Recherché : " . $valeur;
         } else {
             $critere = "mmsi recherché : ".$valeur;

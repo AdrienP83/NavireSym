@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AisShipTypeRepository::class)
+ * @ORM\Table(name="aisshiptype")
  */
 class AisShipType
 {
@@ -19,7 +20,7 @@ class AisShipType
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="aisshiptype",type="integer")
      * @Assert\Length(
      * min=1,
      * max=9,
